@@ -7,5 +7,3 @@ def uppercase(s):
             uppercase_char = letter
         print(uppercase_char, end='')
     print()
-
-uppercase("Hello, World!")
