@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ -z "$PYFILE" ]; then
+  echo "KIndly set the PYFILE env var to the name of the Python file you want to compile."
+  exit 1
+fi
+
+if [ ! -f "$PYFILE" ] || [ ! -r "$PYFILE" ]; then
+  echo "The file $PYFILE does not exist or may not be readable."
+  exit 2
+fi
+
+python3 -m py_compile "$PYFILE"
+
+if [ $? -eq 0 ]; then
+  mv "${PYFILE}c" "$PYFILEc"
+  echo "The file $PYFILE was compiled successfuly and saved as $PYFILEc"
+else
+  echo "The file $PYFILE could not be compiled successfuly."
+  exit 3
+fi
